@@ -1,0 +1,202 @@
+.myBtn {
+  width: 210px;
+  text-align: left;
+  display: flex !important;
+  background-color: rgba(33, 33, 33, 0.7) !important;
+  justify-content: start;
+  box-shadow: 0 7px 14px rgb(50 50 93 / 10%), 0 3px 6px rgb(0 0 0 / 8%);
+}
+.myBtn span,
+svg {
+  background-color: rgba(33, 33, 33, 0.7) !important;
+  background: transparent !important;
+}
+.navcolor {
+  background: linear-gradient(to right bottom, #4f525c, #2f323b) !important;
+}
+.sidebarnav {
+  background-color: #2f323b !important;
+}
+.sidebarnav a {
+  background-color: #2f323b !important;
+}
+.borderLeft {
+  border-left: 4px solid #e77512 !important;
+}
+button span {
+  background-color: rgba(33, 33, 33, 0.7) !important;
+  background: transparent !important;
+}
+
+.list-group-item {
+  border: none !important;
+}
+.topHeader {
+  position: fixed;
+  width: 100%;
+  box-shadow: 0px 1px 14px 0px rgba(0, 0, 0, 0.87);
+  -webkit-box-shadow: 0px 1px 14px 0px rgba(0, 0, 0, 0.87);
+  -moz-box-shadow: 0px 1px 14px 0px rgba(0, 0, 0, 0.87);
+  padding: 5px 0px;
+  top: 0;
+  background-color: rgb(20, 21, 51);
+}
+.logo {
+}
+.logo a {
+}
+.logo a img {
+  width: 290px;
+  padding: 6px 0px;
+}
+main {
+  height: 100vh;
+  position: fixed;
+  top: 50%;
+  transform: translate(0%, -20%);
+  left: 0;
+}
+
+.buttonItem {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+    position: absolute;
+    top: 14.5%;
+}
+@media (max-width: 1192px) {
+  .buttonItem {
+    /* padding-top: 80px; */
+  }
+  main {
+    transform: translate(0%, -25%);
+  }
+}
+.dashBoard {
+  height: max-content;
+  margin-top: 12px;
+}
+.dashBoard a {
+}
+.dashBoard a button,
+.wallet2 {
+  background: #F6851B !important;
+  border: 0;
+  outline: 0;
+  color: white;
+  text-transform: uppercase;
+  font-size: 16px;
+  letter-spacing: 1px;
+  padding: 8px 14px;
+  border-radius: 5px;
+  transition: 0.3s ease-in-out;
+  height: max-content;
+  margin-top: 12px;
+}
+.dashBoard a button:hover,
+
+.wallet a button {
+}
+
+.navbar {
+  position: absolute !important;
+  top: -15%;
+  left: auto;
+  right: 0;
+}
+@media (max-width:1192px) {
+    .logo a img {
+      width: 180px;
+    }
+  
+}
+
+@media (max-width: 992px) {
+  .dashBoard a button {
+    font-size: 13px;
+  }
+  .buttonItem {
+    /* padding-top: 70px; */
+  }
+
+  .wallet2 {
+    font-size: 13px;
+  }
+  .navbar {
+    top: -13%;
+  }
+}
+@media (max-width: 767.98px) {
+
+  
+}
+@media (max-width: 575.98px) {
+  .logo a img {
+    width: 240px;
+  }
+  .navbar {
+    top: -13.4%;
+  }
+}
+.withdrawButton{
+background: -webkit-linear-gradient(left, #7d3ce4 0%, #ac64dc 100%) !important;
+    border: 0 !important;
+    font-size: 18px !important;
+    padding: 10px 25px !important;
+}
+.activeButton {
+  background: -webkit-linear-gradient(left, #3e1c74 0%, #5b3375 100%) !important;
+  border: 0 !important;
+  font-size: 18px !important;
+  padding: 10px 25px !important;
+}
+  .mb-2 {
+    margin-bottom: 0.5rem!important;
+    padding-top: -1vh;
+}
+ .navbar-expand-lg {
+    flex-wrap: nowrap;
+    justify-content: flex-start;
+    margin-top: -10px;
+}
+@media (max-width:767.98px) {
+  .buttonItem {
+ 
+    position: absolute;
+    top: 17%;
+    
+}
+  
+}
+@media (max-width:1191.98px) {
+  .mb-2 {
+    margin-bottom: 0.5rem!important;
+    padding-top: 5vh;
+    margin-top: 0;
+}
+  
+}
+@media (max-width:991.98px) {
+  .mb-2 {
+    margin-bottom: 0.5rem!important;
+    padding-top: 2vh;
+    margin-top: 0;
+}
+  
+}
+@media (max-width:767.98px) {
+  .mb-2 {
+    margin-bottom: 0.5rem!important;
+    padding-top: 5vh;
+    margin-top: 0;
+}
+  
+}
+@media (max-width:575.98px) {
+  .mb-2 {
+    margin-bottom: 0.5rem!important;
+    padding-top: 5.8vh;
+    margin-top: 0;
+}
+  
+}
