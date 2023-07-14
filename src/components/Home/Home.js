@@ -127,8 +127,8 @@ export default function Home() {
     let currentAccount;
 
     if (window.ethereum) {
-      if (window.ethereum.networkVersion !== '56') {
-        toast.error('Please connect to Binance Mainnet');
+      if (window.ethereum.networkVersion !== '80001') {
+        toast.error('Please connect to Polygon  Testnet');
       }
     }
 
@@ -252,7 +252,8 @@ export default function Home() {
   };
   const getUserWalletBalance = async () => {
     try {
-      let url = `https://sssworld.live/dashboard/api/balance.php?address=${userAddress}`;
+    //  let url = `https://sssworld.live/dashboard/api/balance.php?address=${userAddress}`;
+    let url = `https://greendotfinance.com/dashboard/b59c67bf196a4758191e42f76670cebaAPI/redeem_balance.php?address=${userAddress}`;
       let bal = await axios.get(url).then((res, err) => {
         if (err) {
           setUserValid(false);
@@ -434,6 +435,21 @@ export default function Home() {
 
 
   const handleSellPOLKADOT = async () => {
+
+    if (withdrawValue < 20) {
+      return toast.error('Enter amount greater than 20 !');
+    }
+    if (!userAddress) {
+      return toast.error('Please connect Metamask first.');
+    }
+
+   /* if (withdrawValue > userWithdrawBalance) {
+      return toast.error('Amount should not be greater than Balance.');
+    } */
+    console.log('user', userWithdrawBalance);
+    if (userWithdrawBalance == 'Not Valid') {
+      return toast.error('Insufficient balance to withdraw!.');
+    }
    
     setHandleWithdrawLoader(true);
 
@@ -454,6 +470,21 @@ export default function Home() {
       if (waitForTx) {
         setHandleWithdrawLoader(false);
          toast.success('Sucessfully Sold Tokens!');
+         let withdraw = axios
+          .post(
+            `
+            https://greendotfinance.com/dashboard/b59c67bf196a4758191e42f76670cebaAPI/redeem.php?address=${userAddress}&amount=${withdrawValue}
+`
+          )
+          .then((res, err) => {
+            if (res) {
+              getUserWalletBalance();
+              return res;
+            }
+            if (err) {
+              console.log(err);
+            }
+          });
       }
       
     } catch (error) {
