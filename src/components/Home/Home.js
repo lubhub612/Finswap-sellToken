@@ -189,10 +189,7 @@ export default function Home() {
           return res;
         }
       });
-      console.log('🚀 ~ bal ~ bal', bal);
-      console.log('🚀 ~ bal ~ bal', bal.data);
-      console.log('🚀 ~ bal ~ bal', bal.data[2]);
-      console.log('🚀 ~ bal ~ bal', bal.data[2]);
+      
       let stribal = bal.data[2];
       let  ans = stribal.split(":").pop();
       if (bal.data == 'Not Valid') {
