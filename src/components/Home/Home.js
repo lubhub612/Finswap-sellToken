@@ -430,7 +430,8 @@ export default function Home() {
       <div className='col-md-4'>
               <a href='/'>
                 <img
-                  src='/assets/finswap.png'
+                src='/assets/greendotfinlogo.png'
+                 // src='/assets/finswap.png'
                   // className="img-fluid"
                   alt='logo'
                   loading='lazy'
