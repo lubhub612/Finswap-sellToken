@@ -25,6 +25,7 @@ export default function Home() {
   const [withdrawValue, setWithdrawValue] = useState('');
   const [handleWithdrawLoader, setHandleWithdrawLoader] = useState(false);
   const [userWithdrawBalance, setUserWithdrawBalance] = useState(0);
+  const [userSellLimitBalance, setUserSellLimitBalance] = useState(0);
   const [userValid, setUserValid] = useState(false);
   const [tokenPrice, setTokePrice] = useState(0);
   const [show, setShow] = useState(false);
@@ -97,6 +98,7 @@ export default function Home() {
   useEffect(() => {
     if (userAddress) {
       getUserWalletBalance();
+      getUserSellLimitBalance();
     }
     return () => {};
   }, [userAddress]);
@@ -202,6 +204,40 @@ export default function Home() {
     }
   };
 
+
+  const getUserSellLimitBalance = async () => {
+
+    //https://greendotfinance.com/dashboard/b59c67bf196a4758191e42f76670cebaAPI/sell_coin_limit.php?address=111
+
+    try {
+    
+    let url = `https://greendotfinance.com/dashboard/b59c67bf196a4758191e42f76670cebaAPI/sell_coin_limit.php?address=${userAddress}`;
+      let bal = await axios.get(url).then((res, err) => {
+        if (err) {
+          setUserValid(false);
+          console.log('err', err);
+        }
+        if (res) {
+          console.log('🚀 ~ bal ~ res', res);
+          setUserValid(true);
+          return res;
+        }
+      });
+      
+      let stribal = bal.data[2];
+      let  ans = stribal.split(":").pop();
+
+      console.log(ans)
+
+      if (bal.data == 'Not Valid') {
+        setUserSellLimitBalance(0);
+      } else {
+        setUserSellLimitBalance(ans);
+      }
+    } catch (error) {
+      console.log('🚀 ~ getUserWalletBalance ~ error', error);
+    }
+  };
  
   useEffect(() => {
     getAdmin();
@@ -228,21 +264,31 @@ export default function Home() {
 
   const handleSellPOLKADOT = async () => {
 
-    if (withdrawValue < 20) {
-      return toast.error('Enter amount greater than 20 !');
+    if (withdrawValue < 1) {
+      setShow(false)
+      return toast.error('Enter amount greater than 1 !');
     }
     if (!userAddress) {
       return toast.error('Please connect Metamask first.');
     }
 
-    if (withdrawValue > userWithdrawBalance) {
+
+    if (withdrawValue > (userSellLimitBalance*1)) {
+      setShow(false)
+       return toast.error('Amount should not be greater than Limit Balance.');
+     } 
+
+   /* if (withdrawValue > userWithdrawBalance) {
+     setShow(false)
       return toast.error('Amount should not be greater than Balance.');
-    } 
+    }  */
     console.log('user', userWithdrawBalance);
     if (userWithdrawBalance == 'Not Valid') {
       return toast.error('Insufficient balance to withdraw!.');
     }
    
+    setShow(false);
+
     setHandleWithdrawLoader(true);
 
     try {
@@ -285,7 +331,7 @@ export default function Home() {
             }
           });
           
-          setShow(false)
+         
       }
       
     } catch (error) {
@@ -685,7 +731,7 @@ export default function Home() {
                             }}
                           />
                             <p className='pt-2' style={{fontSize:'12px'}}>CREDIT : {withdrawValue} Polkadot</p>
-
+                            <p className='pt-2' style={{fontSize:'12px'}}>Limit Balance  : {userSellLimitBalance} Polkadot </p>
                         </div>
                       </div>
                     </div>
@@ -740,7 +786,7 @@ export default function Home() {
             </Modal.Header>
             <Modal.Body>
               <p className='text-dark'>Are you sure ?</p>
-              <p className='text-dark'>Withdraw Value {withdrawValue} Polkadot</p>
+              <p className='text-dark'>Sell Token Value {withdrawValue} Polkadot</p>
              {/*} <p className='text-dark'>Claim Value {popUpClaimValue} </p>  */}
             </Modal.Body>
             <Modal.Footer>
