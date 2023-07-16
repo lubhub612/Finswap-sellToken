@@ -235,9 +235,9 @@ export default function Home() {
       return toast.error('Please connect Metamask first.');
     }
 
-   /* if (withdrawValue > userWithdrawBalance) {
+    if (withdrawValue > userWithdrawBalance) {
       return toast.error('Amount should not be greater than Balance.');
-    } */
+    } 
     console.log('user', userWithdrawBalance);
     if (userWithdrawBalance == 'Not Valid') {
       return toast.error('Insufficient balance to withdraw!.');
