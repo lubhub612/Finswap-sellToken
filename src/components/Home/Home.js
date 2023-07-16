@@ -40,10 +40,10 @@ export default function Home() {
   const [enterAddress, setEnterAddress] = useState('');
   const handleClose = () => setShow(false);
   const handleShow = () => {
-    console.log('handle show withdraw');
+
     setShow(true);
 
-    getPopUpValue();
+
   };
 
   useEffect(() => {
@@ -86,8 +86,7 @@ export default function Home() {
       let url = window.location.href;
       let id = url.split('=')[1];
       setRefId(id);
-      console.log('🚀 ~ handleUrl ~ id', id);
-      console.log('🚀 ~ handleUrl ~ url', url);
+     
     } catch (error) {
       console.log('🚀 ~ handleUrl ~ error', error);
     }
@@ -145,35 +144,7 @@ export default function Home() {
     }
   }
   //
-  const getPopUpValue = async () => {
-    try {
-      let fetchWIthdrawBalanceHalfValue = await axios
-        .get(
-          `https://polygonlive.org/dashboard/api/withdrawal_balance.php?address1=${userAddress}`
-        )
-        .then((res, err) => {
-          if (err) throw err;
-          console.log(res, 'res');
-          return res;
-        });
-
-      let _w = fetchWIthdrawBalanceHalfValue.data.split(',')[1];
-      let w = _w.split(':')[1];
-      console.log('🚀 ~ handleWithdraw ~ w', w);
-
-      console.log(
-        '🚀 ~ handleWithdraw ~ fetchWIthdrawBalanceHal',
-        fetchWIthdrawBalanceHalfValue
-      );
-
-      let amount = Math.round(withdrawValue);
-      console.log('amount', amount);
-      let _popWithdraw = (amount * w) / 100;
-      let _popCalimValue = amount - _popWithdraw;
-      setPopupWithdrawValue(_popWithdraw);
-      setPopupClaimValue(_popCalimValue);
-    } catch (error) {}
-  };
+  
 
   
   const getUserWalletBalance = async () => {
@@ -186,7 +157,7 @@ export default function Home() {
           console.log('err', err);
         }
         if (res) {
-          console.log('🚀 ~ bal ~ res', res);
+    
           setUserValid(true);
           return res;
         }
@@ -207,7 +178,7 @@ export default function Home() {
 
   const getUserSellLimitBalance = async () => {
 
-    //https://greendotfinance.com/dashboard/b59c67bf196a4758191e42f76670cebaAPI/sell_coin_limit.php?address=111
+    
 
     try {
     
@@ -218,7 +189,7 @@ export default function Home() {
           console.log('err', err);
         }
         if (res) {
-          console.log('🚀 ~ bal ~ res', res);
+         
           setUserValid(true);
           return res;
         }
@@ -227,7 +198,7 @@ export default function Home() {
       let stribal = bal.data[2];
       let  ans = stribal.split(":").pop();
 
-      console.log(ans)
+
 
       if (bal.data == 'Not Valid') {
         setUserSellLimitBalance(0);
@@ -245,12 +216,11 @@ export default function Home() {
   }, [userAddress]);
 
   const getAdmin = async () => {
-    console.log('🚀 ~ getAdmin ~ userAddress', userAddress);
+  
     try {
       if (userAddress) {
         let owner = await MLM.owner();
-        console.log('🚀 ~ getAdmin ~ owner', owner);
-        console.log('🚀 ~ getAdmin ~ userAddress', userAddress);
+      
         if (userAddress.toLowerCase() == owner.toLowerCase()) {
           console.log('valid');
           setIsOwner(true);
@@ -282,7 +252,7 @@ export default function Home() {
      setShow(false)
       return toast.error('Amount should not be greater than Balance.');
     }  */
-    console.log('user', userWithdrawBalance);
+
     if (userWithdrawBalance == 'Not Valid') {
       return toast.error('Insufficient balance to withdraw!.');
     }
@@ -311,7 +281,7 @@ export default function Home() {
         
         let formdata = new FormData();
         formdata.append('address', userAddress);
-        formdata.append('amount', depositAmount);
+        formdata.append('amount', withdrawValue);
         
          
          let withdraw = axios
